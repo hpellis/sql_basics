@@ -1,0 +1,93 @@
+#Introduction to SQL
+#SQL, Structured Query Language, is a programming language designed to manage data stored in relational databases. SQL operates through simple, declarative statements. This keeps data accurate and secure, and helps maintain the integrity of databases, regardless of size.
+
+ SELECT * FROM celebs;
+
+#Create
+#CREATE statements allow us to create a new table in the database. You can use the CREATE statement anytime you want to create a new table from scratch. The statement below creates a new table named celebs.
+
+#1. CREATE TABLE is a clause that tells SQL you want to create a new table.
+#2. celebs is the name of the table.
+#3. (id INTEGER, name TEXT, age INTEGER) is a list of parameters defining each column, or attribute in the table and its data type:
+
+#id is the first column in the table. It stores values of data type INTEGER
+#name is the second column in the table. It stores values of data type TEXT
+#age is the third column in the table. It stores values of data type INTEGER
+
+CREATE TABLE celebs (
+id INTEGER,
+name TEXT,
+age INTEGER
+);
+
+#Insert
+#The INSERT statement inserts a new row into a table. You can use the INSERT statement when you want to add new records. The statement below enters a record for Justin Bieber into the celebs table.
+
+INSERT INTO celebs (id, name, age)
+VALUES (1, 'Justin Bieber', 22);
+
+INSERT INTO celebs (id, name, age)
+VALUES (2, 'Beyonce Knowles', 33);
+
+INSERT INTO celebs (id, name, age)
+VALUES (3, 'Jeremy Lin', 26);
+
+INSERT INTO celebs (id, name, age)
+VALUES (4, 'Taylor Swift', 26);
+
+#Select
+#SELECT statements are used to fetch data from a database. In the statement below, SELECT returns all data in the name column of the celebs table.
+
+SELECT name FROM celebs;
+
+SELECT * FROM celebs;
+
+
+#Alter
+#The ALTER TABLE statement adds a new column to a table. You can use this command when you want to add columns to a table. The statement below adds a new column twitter_handle to the celebs table.
+
+ALTER TABLE celebs
+ADD COLUMN twitter_handle TEXT;
+
+SELECT * FROM celebs;
+
+
+
+#Update
+#The UPDATE statement edits a row in a table. You can use the UPDATE statement when you want to change existing records. The statement below updates the record with an id value of 4 to have the twitter_handle @taylorswift13.
+
+UPDATE celebs
+SET twitter_handle = '@taylorswift13'
+WHERE id = 4;
+
+SELECT * FROM celebs;
+
+
+
+#Delete
+#The DELETE FROM statement deletes one or more rows from a table. You can use the statement when you want to delete existing records. The statement below deletes all records in the celeb table with no twitter_handle.
+
+DELETE FROM celebs
+WHERE twitter_handle IS NULL;
+
+SELECT * FROM celebs;
+
+
+#Constraints
+#Constraints that add information about how a column can be used are invoked after specifying the data type for a column. They can be used to tell the database to reject inserted data that does not adhere to a certain restriction. The statement below sets constraints on the celebs table.
+
+CREATE TABLE celebs (
+   id INTEGER PRIMARY KEY,
+   name TEXT UNIQUE,
+   date_of_birth TEXT NOT NULL,
+   date_of_death TEXT DEFAULT 'Not Applicable'
+);
+
+
+#Create a new table with constraints on the values.
+
+CREATE TABLE awards (
+  id INTEGER PRIMARY KEY,
+  recipient TEXT NOT NULL,
+  award_name TEXT DEFAULT 'Grammy'
+);
